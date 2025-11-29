@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PaymentZarr</title>
+    <title>PAYMENT ZAR STORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -26,28 +26,150 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(30, 58, 138, 0.9)), 
+                        url('https://autoresbot.com/tmp_files/817d1813-46aa-411d-b5b1-f94e728e2c51.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: var(--text-white);
             min-height: 100vh;
             padding: 20px;
             position: relative;
             overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(59,130,246,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            z-index: -1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
+        }
+
+        .welcome-section {
+            text-align: center;
+            padding: 50px 30px;
+            background: rgba(30, 58, 138, 0.8);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(96, 165, 250, 0.4);
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient);
+            border-radius: 27px;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .logo-container {
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .logo {
+            max-width: 150px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 4px solid var(--secondary-blue);
+        }
+
+        .welcome-message {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, var(--light-blue) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.3rem;
+            color: var(--light-blue);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .welcome-description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--light-blue);
+            background: rgba(30, 64, 175, 0.4);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .reveal-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 18px 35px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reveal-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .reveal-btn:hover::before {
+            left: 100%;
+        }
+
+        .reveal-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.7);
+        }
+
+        .payment-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease;
+            padding-top: 40px;
+        }
+
+        .payment-content.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         header {
@@ -57,16 +179,18 @@
             position: relative;
         }
 
-        .logo-container {
+        .payment-logo-container {
             margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
         }
 
-        .logo {
-            max-width: 180px;
+        .payment-logo {
+            max-width: 120px;
             height: auto;
             border-radius: 50%;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            border: 4px solid var(--secondary-blue);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--secondary-blue);
         }
 
         header h1 {
@@ -357,6 +481,21 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 15px;
+                align-items: flex-start;
+                padding-top: 40px;
+                background-attachment: scroll;
+            }
+            
+            .welcome-section {
+                padding: 30px 20px;
+            }
+            
+            .welcome-message {
+                font-size: 2.2rem;
+            }
+            
             .payment-section {
                 grid-template-columns: 1fr;
             }
@@ -373,122 +512,143 @@
 </head>
 <body>
     <div class="container">
-        <header>
+        <!-- Welcome Section dengan Logo -->
+        <div class="welcome-section" id="welcome-section">
             <div class="logo-container">
-                <img src="https://autoresbot.com/tmp_files/3e8a7a21-e457-481d-bde9-f47d1fd7d706.jpg" alt="Logo Payment 4 Dimensi" class="logo">
+                <img src="https://autoresbot.com/tmp_files/3e8a7a21-e457-481d-bde9-f47d1fd7d706.jpg" alt="Logo ZAR STORE" class="logo">
             </div>
-            <h1>PAYMENT ZARR STORE</h1>
-            <p>Pilih metode pembayaran yang paling nyaman untuk Anda</p>
-        </header>
+            
+            <div class="welcome-message">WELCOME DI WEBSITE ZAR STORE</div>
+            <div class="welcome-subtitle">Tempat terbaik untuk pembayaran digital yang aman dan nyaman</div>
+            
+            <div class="welcome-description">
+                Klik tombol di bawah untuk melihat metode pembayaran yang tersedia. Kami menyediakan berbagai opsi pembayaran untuk kenyamanan Anda.
+            </div>
+            
+            <button class="reveal-btn" id="reveal-payment">
+                <i class="fas fa-credit-card"></i> Lihat Metode Pembayaran
+            </button>
+        </div>
 
-        <div class="payment-section">
-            <!-- DANA Payment Card -->
-            <div class="payment-card">
-                <div class="payment-header">
-                    <div class="payment-icon">
-                        <i class="fas fa-wallet"></i>
-                    </div>
-                    <h2 class="payment-title">DANA</h2>
+        <!-- Payment Content dengan Logo -->
+        <div class="payment-content" id="payment-content">
+            <header>
+                <div class="payment-logo-container">
+                    <img src="https://autoresbot.com/tmp_files/3e8a7a21-e457-481d-bde9-f47d1fd7d706.jpg" alt="Logo ZAR STORE" class="payment-logo">
                 </div>
-                <div class="payment-details">
-                    <div class="payment-number">
-                        <span>082249989396</span>
-                        <button class="copy-btn" data-number="082249989396">
-                            <i class="fas fa-copy"></i> Salin
+                <h1>PAYMENT ZAR STORE</h1>
+                <p>Pilih metode pembayaran yang paling nyaman untuk Anda</p>
+            </header>
+
+            <div class="payment-section">
+                <!-- DANA Payment Card -->
+                <div class="payment-card">
+                    <div class="payment-header">
+                        <div class="payment-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <h2 class="payment-title">DANA</h2>
+                    </div>
+                    <div class="payment-details">
+                        <div class="payment-number">
+                            <span>082249989396</span>
+                            <button class="copy-btn" data-number="082249989396">
+                                <i class="fas fa-copy"></i> Salin
+                            </button>
+                        </div>
+                        <p>Transfer ke nomor DANA di atas untuk melakukan pembayaran</p>
+                    </div>
+                </div>
+
+                <!-- OVO Payment Card -->
+                <div class="payment-card">
+                    <div class="payment-header">
+                        <div class="payment-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h2 class="payment-title">OVO</h2>
+                    </div>
+                    <div class="payment-details">
+                        <div class="payment-number">
+                            <span>082249989394</span>
+                            <button class="copy-btn" data-number="082249989394">
+                                <i class="fas fa-copy"></i> Salin
+                            </button>
+                        </div>
+                        <p>Transfer ke nomor OVO di atas untuk melakukan pembayaran</p>
+                    </div>
+                </div>
+
+                <!-- QRIS Payment Card -->
+                <div class="payment-card">
+                    <div class="payment-header">
+                        <div class="payment-icon">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <h2 class="payment-title">QRIS</h2>
+                    </div>
+                    <div class="payment-details">
+                        <div class="qris-container">
+                            <img src="https://img1.pixhost.to/images/10150/660700102_awang.jpg" alt="QRIS Payment" class="qris-image">
+                        </div>
+                        <p>Scan QR code di atas untuk melakukan pembayaran</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="download-qris">
+                            <i class="fas fa-download"></i> Download QRIS
                         </button>
                     </div>
-                    <p>Transfer ke nomor DANA di atas untuk melakukan pembayaran</p>
                 </div>
             </div>
 
-            <!-- OVO Payment Card -->
-            <div class="payment-card">
-                <div class="payment-header">
-                    <div class="payment-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h2 class="payment-title">OVO</h2>
-                </div>
-                <div class="payment-details">
-                    <div class="payment-number">
-                        <span>082249989394</span>
-                        <button class="copy-btn" data-number="082249989394">
-                            <i class="fas fa-copy"></i> Salin
-                        </button>
-                    </div>
-                    <p>Transfer ke nomor OVO di atas untuk melakukan pembayaran</p>
-                </div>
-            </div>
-
-            <!-- QRIS Payment Card -->
-            <div class="payment-card">
-                <div class="payment-header">
-                    <div class="payment-icon">
-                        <i class="fas fa-qrcode"></i>
-                    </div>
-                    <h2 class="payment-title">QRIS</h2>
-                </div>
-                <div class="payment-details">
-                    <div class="qris-container">
-                        <img src="https://img1.pixhost.to/images/10150/660700102_awang.jpg" alt="QRIS Payment" class="qris-image">
-                    </div>
-                    <p>Scan QR code di atas untuk melakukan pembayaran</p>
-                </div>
+            <!-- WhatsApp Section -->
+            <div class="whatsapp-section">
+                <h2>Hubungi Kami Via WhatsApp</h2>
                 <div class="action-buttons">
-                    <button class="btn btn-primary" id="download-qris">
-                        <i class="fas fa-download"></i> Download QRIS
-                    </button>
+                    <a href="https://wa.me/628134521622" target="_blank" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Chat WhatsApp
+                    </a>
                 </div>
             </div>
-        </div>
 
-        <!-- WhatsApp Section -->
-        <div class="whatsapp-section">
-            <h2>Hubungi Kami Via WhatsApp</h2>
-            <div class="action-buttons">
-                <a href="https://wa.me/628134521622" target="_blank" class="btn btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Chat WhatsApp
-                </a>
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <h2>Informasi Lainnya</h2>
+                <div class="contact-grid">
+                    <a href="https://wa.me/628134521622" target="_blank" class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>WhatsApp</h3>
+                            <p>628134521622</p>
+                        </div>
+                    </a>
+                    <a href="https://chat.whatsapp.com/LrfY3kZkgWPGOwRQxIPri8" target="_blank" class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Grup WhatsApp</h3>
+                            <p>Join Grup Kami</p>
+                        </div>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029VbBU92UChq6LQJdQKD2H" target="_blank" class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-broadcast-tower"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Saluran WhatsApp</h3>
+                            <p>Ikuti Saluran Kami</p>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <!-- Contact Section -->
-        <div class="contact-section">
-            <h2>Informasi Lainnya</h2>
-            <div class="contact-grid">
-                <a href="https://wa.me/628134521622" target="_blank" class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div class="contact-info">
-                        <h3>WhatsApp</h3>
-                        <p>628134521622</p>
-                    </div>
-                </a>
-                <a href="https://chat.whatsapp.com/K6VaIiWj3Hu7ddJWDPRHxw" target="_blank" class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="contact-info">
-                        <h3>Grup WhatsApp</h3>
-                        <p>Join Grup Kami</p>
-                    </div>
-                </a>
-                <a href="https://whatsapp.com/channel/0029VbBU92UChq6LQJdQKD2H" target="_blank" class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-broadcast-tower"></i>
-                    </div>
-                    <div class="contact-info">
-                        <h3>Saluran WhatsApp</h3>
-                        <p>Ikuti Saluran Kami</p>
-                    </div>
-                </a>
-            </div>
+            <footer>
+                <p></p>
+            </footer>
         </div>
-
-        <footer>
-            <p></p>
-        </footer>
     </div>
 
     <!-- Notification Element -->
@@ -497,6 +657,25 @@
     </div>
 
     <script>
+        // Reveal payment content functionality
+        document.getElementById('reveal-payment').addEventListener('click', function() {
+            const paymentContent = document.getElementById('payment-content');
+            const welcomeSection = document.getElementById('welcome-section');
+            
+            // Tambahkan animasi fade out untuk welcome section
+            welcomeSection.style.opacity = '0';
+            welcomeSection.style.transform = 'translateY(-20px)';
+            
+            // Set timeout untuk menampilkan payment content setelah animasi welcome selesai
+            setTimeout(() => {
+                welcomeSection.style.display = 'none';
+                paymentContent.classList.add('show');
+                
+                // Scroll ke payment content
+                paymentContent.scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        });
+
         // Copy to clipboard functionality
         document.querySelectorAll('.copy-btn').forEach(button => {
             button.addEventListener('click', function() {
